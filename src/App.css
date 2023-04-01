@@ -1,3 +1,9 @@
+
+:root
+{
+  --bs-link-hover-color: #26ff00 !important;
+}
+
 .App {
   text-align: center;
 }
@@ -7,11 +13,7 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +30,42 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.link2
+{
+  text-decoration: none !important;
+  color: black !important;
+}
+.pointer
+{
+  cursor: pointer !important;
+}
+.star
+{
+  color: rgb(225, 225, 21);
+}
+.linkss:hover
+{
+  border-style: solid;
+  border-color: #26ff00;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px ;
+  border-bottom-right-radius: 13px ;
+  border-bottom-left-radius: 13px ;
+}
+.addbtn
+{
+  opacity: 0;
+  transition: 0.5s;
+  transform: translateY(100%);
+  
+}
+.linkss:hover .addbtn
+{
+  opacity: 1;
+  transform: translateY(0%);
+  transition: 0.5s ;
+}
+.imga
+{
+  width: 100px !important;
 }
