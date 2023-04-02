@@ -41,7 +41,7 @@ function saveUserData()
 
 
   let x = createBrowserRouter([
-    {path:'' , element:<Layout setuserData={setuserData}  userData={userData} /> , children:[
+    {path:'/' , element:<Layout setuserData={setuserData}  userData={userData} /> , children:[
     {index:true ,element:<Home/>},
     {path:'Register' ,element:<Register/>},
     {path:'Cart' ,element: <ProtectedRoute><Cart/></ProtectedRoute>},
