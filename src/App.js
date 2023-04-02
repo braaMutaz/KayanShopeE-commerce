@@ -50,6 +50,7 @@ function saveUserData()
     {path:'Details/:id' ,element: <ProtectedRoute><Details/></ProtectedRoute>},
     {path:'Categories' ,element:  <ProtectedRoute><Categories/></ProtectedRoute> },
     {path:'About' ,element:<ProtectedRoute><About/></ProtectedRoute>},
+    {path:'*' ,element:<Login saveUserData={saveUserData} />},
     ]}
     ])
 
