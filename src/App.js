@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-
+import  { Toaster } from 'react-hot-toast';
 import { createBrowserRouter,  Navigate,  RouterProvider   } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Register from './components/Register/Register';
@@ -14,6 +14,10 @@ import jwtDecode from 'jwt-decode';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Categories from './components/Categories/Categories';
 import About from './components/About/About';
+import CounterContextProvider from './CounterContext/CounterContext';
+import CartContextProvider from './CounterContext/CartContext';
+import CheckOut from './components/CheckOut/CheckOut';
+
 
 
 
@@ -50,12 +54,21 @@ function saveUserData()
     {path:'Details/:id' ,element: <ProtectedRoute><Details/></ProtectedRoute>},
     {path:'Categories' ,element:  <ProtectedRoute><Categories/></ProtectedRoute> },
     {path:'About' ,element:<ProtectedRoute><About/></ProtectedRoute>},
+    {path:'CheckOut' ,element:<ProtectedRoute><CheckOut/></ProtectedRoute>},
     {path:'*' ,element:<Login saveUserData={saveUserData} />},
     ]}
     ])
 
 
-  return <RouterProvider router={x}></RouterProvider>
+  return <CartContextProvider>
+   <CounterContextProvider>
+   <Toaster/>
+    <RouterProvider router={x}></RouterProvider>
+   
+  </CounterContextProvider>
+
+  </CartContextProvider>
+
   
   
 

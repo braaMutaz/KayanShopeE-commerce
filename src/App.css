@@ -35,6 +35,10 @@
   text-decoration: none !important;
   color: black !important;
 }
+.link3
+{
+  text-decoration: none !important;
+}
 .pointer
 {
   cursor: pointer !important;
@@ -68,4 +72,96 @@
 .imga
 {
   width: 100px !important;
+}
+.spin
+{
+  left: 0;
+  top: -2.2%; 
+  position: absolute;
+
+}
+.main
+{
+  background-color: rgb(232, 232, 232);
+}
+.btnRemove
+{
+  border: none;
+  background-color: transparent;
+}
+
+.clearBtn:hover .clear
+{
+color: white !important;
+
+}
+.clear
+{
+  transition: 0.1s;
+}
+@media screen and (min-width:0px) and (max-width:993px)
+{
+.categor h2 
+{
+  font-size: 80%;
+}
+.categor img
+{
+  height: 150px !important;
+  width: 80px !important;
+  padding: 10px !important;
+}
+.categor
+{
+ 
+  text-align: center !important;
+
+}
+
+}
+@media screen and (min-width:250px) and (max-width:284px)
+{
+.categor h2 
+{
+  font-size: 35%;
+}
+.categor img
+{
+  height: 100px !important;
+  width: 30px !important;
+  padding: 0px !important;
+}
+.categor
+{
+ 
+  text-align: center !important;
+
+}
+
+}
+@media screen and (min-width:370px) and (max-width:530px)
+{
+.categor h2 
+{
+  font-size: 55%;
+}
+.categor img
+{
+  height: 100px !important;
+  width: 30px !important;
+  padding: 0px !important;
+}
+.categor
+{
+ 
+  text-align: center !important;
+
+}
+
+}
+.Shop
+{
+  top: -100%;
+  right: 50%;
+
 }

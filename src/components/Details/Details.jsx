@@ -1,11 +1,30 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Slider from 'react-slick'
+import { CartContext } from '../../CounterContext/CartContext'
+import { toast } from 'react-hot-toast'
 
 export default function Details() {
   let param = useParams()
 
+   let {addToCart , setnumberOfCartItems} = useContext(CartContext)
+  async function addToCartid(productId)
+  {
+    let response = await addToCart(productId)
+    if(response.data.status == 'success')
+    {
+      setnumberOfCartItems(response.data.numOfCartItems)
+      toast.success(response.data.message);
+      console.log(response ,response.data.message );
+    }
+    else
+    {
+      toast.error(response.data.message);
+    }
+
+    
+  }
 
   const settings = {
     dots: true,
@@ -40,7 +59,7 @@ export default function Details() {
     <div className="col-md-4 ">
        
        <Slider className='text-center' {...settings}>
-        {proddetails?.images.map((img)=> <img className='w-100' src={img} alt="" /> )}
+        {proddetails?.images.map((img , ind)=> <img key={ind} className='w-100' src={img} alt="" /> )}
        </Slider>
 
     </div>
@@ -55,7 +74,7 @@ export default function Details() {
          {proddetails?.ratingsAverage}
        </span>
      </div>
-     <button className='btn bg-success mt-4 pointer  text-white w-100'>+Add</button>
+     <button onClick={()=>addToCartid(param.id)} className='btn bg-success mt-4 pointer  text-white w-100'>+Add</button>
     </div>
     
     </>}

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import * as Yup from 'yup'
+import * as Yup from 'yup'  
 
 export default function Register() {
 
@@ -16,8 +16,8 @@ const [isloading, setisloading] = useState(false)
     let {data} = await axios.post(`https://route-ecommerce.onrender.com/api/v1/auth/signup` , values).catch((err)=>{
       
     setisloading(false)  
-    
-    setmassageError(`${err.response.data.errors.param} : ${err.response.data.errors.msg}`)
+    console.log(err);
+    setmassageError(`${err.response.data.message}`)
     })
     
     if(data.message === 'success')
@@ -55,7 +55,7 @@ const [isloading, setisloading] = useState(false)
     onSubmit:handleRegister
   })
   return <>
-    <div className='w-75 mx-auto py-4'>
+    <div className='w-75 mx-auto py-4 vh-100'>
     <h3>registerNow:</h3>
        
        {massageError? <div className="alert-danger alert">{massageError}</div> :null } 

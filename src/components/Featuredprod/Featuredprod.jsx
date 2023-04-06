@@ -1,8 +1,32 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../../CounterContext/CartContext'
+import { toast } from 'react-hot-toast'
+
 export default function Featuredprod() {
   
+
+
+  let { getCard ,  addToCart , setnumberOfCartItems} = useContext(CartContext)
+
+
+    async function addToCartid(productId)
+    {
+      let response = await addToCart(productId)
+      if(response.data.status == 'success')
+      {
+        setnumberOfCartItems(response.data.numOfCartItems)
+        toast.success(response.data.message);
+        console.log(response ,response.data.message );
+      }
+      else
+      {
+        toast.error(response.data.message);
+      }
+
+      
+    }
 
     const [apidata, setapidata] = useState([])
     const [isLoading, setisLoading] = useState(false)
@@ -17,12 +41,13 @@ export default function Featuredprod() {
 
     useEffect(()=>{
         getapi()
+        getCard()
     },[])
   return <>
     
 
    <div  className="row g-3">
-    {isLoading?<div><i className='fas fa-spinner fa-spin fa-3x'></i></div>:<>
+    {isLoading?<div className='bg-dark d-flex justify-content-center align-items-center  spin w-100 vh-100  '><div><i className='fas  fa-spinner text-white fa-spin fa-3x'></i></div></div>:<>
     {apidata.map((categ )=> 
 
 
@@ -39,8 +64,9 @@ export default function Featuredprod() {
      {categ.ratingsAverage}
    </span>
  </div>
- <button className='btn bg-success mt-4 pointer addbtn text-white w-100'>+ Add</button>
+
  </Link>
+ <button onClick={()=>addToCartid(categ._id)} className='btn bg-success mt-4 pointer addbtn text-white w-100'>+ Add</button>
  </div>
 </div>
 

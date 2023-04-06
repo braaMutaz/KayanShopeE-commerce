@@ -55,7 +55,7 @@ const [isloading, setisloading] = useState(false)
     onSubmit:handleLogin
   })
   return <>
-    <div className='w-75 mx-auto py-4'>
+    <div className='w-75 mx-auto py-4 vh-100'>
     <h3>LoginNow:</h3>
        
        {massageError? <div className="alert-danger alert">{massageError}</div> :null } 

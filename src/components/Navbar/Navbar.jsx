@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import image from'../img/pngtree-shopping-mall-logo-png-image_5406131.png'
+import image from'../img/kayan.jpg'
+import { CartContext } from '../../CounterContext/CartContext'
+
 export default function Navbar({userData , Logout}) {
+
+  let {numberOfCartItems} = useContext(CartContext)
+
+  
+  
   return <>
   
   <nav className="navbar navbar-expand-lg bg-body-tertiary  p-3 ">
@@ -18,11 +25,11 @@ export default function Navbar({userData , Logout}) {
           
         </li>
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="Product">Product</Link>
+          <Link className="nav-link active" aria-current="page" to="/">Product</Link>
         </li>
 
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="Cart">Cart</Link>
+          <Link className="nav-link active" aria-current="page" to="Cart">Cart </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="Categories">Categories</Link>
@@ -30,6 +37,13 @@ export default function Navbar({userData , Logout}) {
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="About">About</Link>
         </li>
+        <div className='d-flex align-items-center'>
+          <Link className='link3' to={'/Cart'}>
+          <i class="fa-solid text-success fa-cart-shopping">
+            </i> <span className='px-2 btn btn-'>{numberOfCartItems}</span>
+          </Link>
+       
+        </div>
 
       </ul> :null }
 
@@ -55,6 +69,8 @@ export default function Navbar({userData , Logout}) {
     </div>
   </div>
 </nav>
+
+
   
   </>
 }
