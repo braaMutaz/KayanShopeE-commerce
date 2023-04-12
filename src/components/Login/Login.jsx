@@ -8,6 +8,11 @@ export default function Login({saveUserData}) {
 
 let navi = useNavigate() ;
 
+function navFor()
+{
+  navi('/ForgotPassword')
+}
+
   const [massageError, setmassageError] = useState('')
 const [isloading, setisloading] = useState(false)
  async function handleLogin(values)
@@ -78,7 +83,11 @@ const [isloading, setisloading] = useState(false)
           
           <br /> 
           {isloading?<button  type='button' className='btn bg-success text-white'><i className='fas fa-spinner fa-spin '></i></button>: 
+          <>
           <button disabled={!(formik.isValid && formik.dirty)  } type='submit' className='btn bg-success text-white'>Login</button>
+           <span onClick={navFor}  className='btn'> Forgot Password</span>
+          
+          </>
           }
 
         

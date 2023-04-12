@@ -39,7 +39,7 @@ export default function Navbar({userData , Logout}) {
         </li>
         <div className='d-flex align-items-center'>
           <Link className='link3' to={'/Cart'}>
-          <i class="fa-solid text-success fa-cart-shopping">
+          <i className="fa-solid text-success fa-cart-shopping">
             </i> <span className='px-2 btn btn-'>{numberOfCartItems}</span>
           </Link>
        
@@ -59,9 +59,25 @@ export default function Navbar({userData , Logout}) {
 <li className="nav-item">
   <Link className="nav-link active" aria-current="page" to="Register">Register</Link>
 </li>
-</> :   <li className="nav-item">
+</> :  <>
+
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Update
+          </a>
+          <ul class="dropdown-menu">
+            <li><Link class="dropdown-item" to={'/currentPassword'}>Password</Link></li>
+            <li><Link class="dropdown-item" to={'/UpdateUserData'}>user Data</Link></li>
+          </ul>
+        </li>
+
+
+<li className="nav-item">
   <span onClick={Logout} className=" pointer   nav-link active" aria-current="page" >Logout</span>
-</li> }  
+</li>
+</>  
+
+}  
 
 
       </ul>

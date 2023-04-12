@@ -10,16 +10,23 @@ import { createContext, useEffect, useState } from "react";
 
     const [cartId, setcartId] = useState(0)
     const [numberOfCartItems, setnumberOfCartItems] = useState(0)
-
+    const [ErrEmail, setErrEmail] = useState(null)
+    const [ErrCode, setErrCode] = useState(null)
+    const [EnterPass, setEnterPass] = useState(null)
+    const [currentPasswordErr, setcurrentPasswordErr] = useState(null)
+    const [updateUserContext, setupdateUserContext] = useState(null)
+    const [isLoading, setisLoading] = useState(false)
     async function getCard()
     {
             let response = await displayCart()
-            console.log(response);
+           
             if(response?.data?.status === 'success')
             {
                 setnumberOfCartItems(response.data.numOfCartItems)
                 setcartId(response.data.data._id)
+               
             }
+           
     }
 
 
@@ -71,9 +78,81 @@ function onlinePayment(cartId , shippingAddress)
 .catch((err)=> err )
 }
 
+function SendEmailContext(values)
+{
+    setisLoading(true)
+ return axios.post(`https://route-ecommerce.onrender.com/api/v1/auth/forgotPasswords`, values)
+.then((response)=> response)
+.catch((err)=> {
+    console.log(err);
+    setErrEmail(err.response.data.message)
+    setisLoading(false)
+} )
+}
+
+function VerifyCodeContext(values)
+{
+    setisLoading(true)
+ return axios.post(`https://route-ecommerce.onrender.com/api/v1/auth/verifyResetCode`, values)
+.then((response)=> response)
+.catch((err)=> {
+    console.log(err);
+    setErrCode(err.response.data.message)
+    setisLoading(false)
+} )
+}
+
+function EnterPasswordContext(values)
+{
+    setisLoading(true)
+ return axios.put(`https://route-ecommerce.onrender.com/api/v1/auth/resetPassword`, values)
+.then((response)=> response)
+.catch((err)=> {
+
+     console.log(err.response.data.message);
+     setEnterPass(err.response.data.message)
+     setisLoading(false)
+} )
+}
 
 
-  return <CartContext.Provider value={{ getCard , setnumberOfCartItems , addToCart , cartId ,numberOfCartItems, displayCart , UpdateCart , RemoveCart , ClearCart , onlinePayment}}>
+
+function currentPasswordContext(values)
+{
+    setisLoading(true)
+ return axios.put(`https://route-ecommerce.onrender.com/api/v1/users/changeMyPassword` , 
+ values,
+ {headers:headers}
+ )
+.then((response)=> response)
+.catch((err)=> {
+    console.log(err);
+    setcurrentPasswordErr(err.response.data.errors.msg)
+    setisLoading(false)
+} )
+}
+
+function UpdateData(values)
+{
+
+    setisLoading(true)
+ return axios.put(`https://route-ecommerce.onrender.com/api/v1/users/updateMe` , 
+ values,
+ {headers:headers}
+ )
+.then((response)=> response)
+.catch((err)=> {
+  console.log(err);
+  setupdateUserContext(err.response.data.errors.msg)
+  console.log(err.response.data.errors.msg);
+  setisLoading(false)
+} )
+}
+
+
+
+
+  return <CartContext.Provider value={{ isLoading ,  setisLoading , setupdateUserContext , updateUserContext ,  UpdateData , setcurrentPasswordErr ,  currentPasswordErr , currentPasswordContext ,  EnterPass ,  ErrCode , setErrEmail , ErrEmail , EnterPasswordContext ,VerifyCodeContext  , SendEmailContext , getCard , setnumberOfCartItems , addToCart , cartId ,numberOfCartItems, displayCart , UpdateCart , RemoveCart , ClearCart , onlinePayment}}>
       {props.children}
   </CartContext.Provider>
  }

@@ -17,6 +17,10 @@ import About from './components/About/About';
 import CounterContextProvider from './CounterContext/CounterContext';
 import CartContextProvider from './CounterContext/CartContext';
 import CheckOut from './components/CheckOut/CheckOut';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import EnterPassword from './components/EnterPassword/EnterPassword';
+import CurrentPassword from './components/CurrentPassword/CurrentPassword';
+import UpdateUserData from './components/UpdateUserData/UpdateUserData';
 
 
 
@@ -55,6 +59,11 @@ function saveUserData()
     {path:'Categories' ,element:  <ProtectedRoute><Categories/></ProtectedRoute> },
     {path:'About' ,element:<ProtectedRoute><About/></ProtectedRoute>},
     {path:'CheckOut' ,element:<ProtectedRoute><CheckOut/></ProtectedRoute>},
+    {path:'CurrentPassword' ,element:<ProtectedRoute><CurrentPassword setuserData={setuserData}  /></ProtectedRoute>},
+    {path:'UpdateUserData' ,element:<ProtectedRoute><UpdateUserData  setuserData={setuserData}  userData={userData} /></ProtectedRoute>},
+    {path:'ForgotPassword' ,element:<ForgotPassword/>},
+    {path:'EnterPassword' ,element:<EnterPassword/>},
+    
     {path:'*' ,element:<Login saveUserData={saveUserData} />},
     ]}
     ])
