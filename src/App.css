@@ -165,3 +165,8 @@ color: white !important;
   right: 50%;
 
 }
+.love:hover
+{
+  cursor: pointer;
+  font-size: large;
+}

@@ -51,24 +51,28 @@ function displayCart()
 .then((response)=> response)
 .catch((err)=> err )
 }
+
 function UpdateCart(productId , prodCount)
 {
  return axios.put(`https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,{count:prodCount},{headers: headers})
 .then((response)=> response)
 .catch((err)=> err )
 }
+
 function RemoveCart(productId )
 {
  return axios.delete(`https://route-ecommerce.onrender.com/api/v1/cart/${productId}`,{headers: headers})
 .then((response)=> response)
 .catch((err)=> err )
 }
+
 function ClearCart()
 {
  return axios.delete(`https://route-ecommerce.onrender.com/api/v1/cart`,{headers: headers})
 .then((response)=> response)
 .catch((err)=> err )
 }
+
 function onlinePayment(cartId , shippingAddress)
 {
  return axios.post(`https://route-ecommerce.onrender.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
@@ -132,6 +136,10 @@ function currentPasswordContext(values)
 } )
 }
 
+
+
+
+
 function UpdateData(values)
 {
 
@@ -149,10 +157,35 @@ function UpdateData(values)
 } )
 }
 
+function addwishlist(productId)
+{
+ return axios.post(`https://route-ecommerce.onrender.com/api/v1/wishlist`, 
+{productId: productId } ,
+{headers: headers})
+.then((response)=> response)
+.catch((err)=> err )
+}
+
+function displaywishlist()
+{
+ return axios.get(`https://route-ecommerce.onrender.com/api/v1/wishlist`, 
+{headers: headers})
+.then((response)=> response)
+.catch((err)=> err )
+}
+
+
+function Removewish(productId )
+{
+ return axios.delete(`https://route-ecommerce.onrender.com/api/v1/wishlist/${productId}`,{headers: headers})
+.then((response)=> response)
+.catch((err)=> err )
+}
 
 
 
-  return <CartContext.Provider value={{ isLoading ,  setisLoading , setupdateUserContext , updateUserContext ,  UpdateData , setcurrentPasswordErr ,  currentPasswordErr , currentPasswordContext ,  EnterPass ,  ErrCode , setErrEmail , ErrEmail , EnterPasswordContext ,VerifyCodeContext  , SendEmailContext , getCard , setnumberOfCartItems , addToCart , cartId ,numberOfCartItems, displayCart , UpdateCart , RemoveCart , ClearCart , onlinePayment}}>
+
+  return <CartContext.Provider value={{ Removewish , displaywishlist , addwishlist , isLoading ,  setisLoading , setupdateUserContext , updateUserContext ,  UpdateData , setcurrentPasswordErr ,  currentPasswordErr , currentPasswordContext ,  EnterPass ,  ErrCode , setErrEmail , ErrEmail , EnterPasswordContext ,VerifyCodeContext  , SendEmailContext , getCard , setnumberOfCartItems , addToCart , cartId ,numberOfCartItems, displayCart , UpdateCart , RemoveCart , ClearCart , onlinePayment}}>
       {props.children}
   </CartContext.Provider>
  }

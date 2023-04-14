@@ -8,8 +8,19 @@ export default function Featuredprod() {
   
 
 
-  let { getCard ,  addToCart , setnumberOfCartItems} = useContext(CartContext)
+  let { getCard ,  addToCart , setnumberOfCartItems , addwishlist , displaywishlist} = useContext(CartContext)
+    
 
+
+    async function wishlist(productId)
+    {
+      let response = await addwishlist(productId)
+      console.log(response);
+      if(response.data.status == "success")
+      {
+        toast.success("Product added successfully to your wishlist")
+      }
+    }
 
     async function addToCartid(productId)
     {
@@ -28,8 +39,15 @@ export default function Featuredprod() {
       
     }
 
+
     const [apidata, setapidata] = useState([])
     const [isLoading, setisLoading] = useState(false)
+const [love, setlove] = useState(null)
+
+
+
+
+
    async function getapi() {
     setisLoading(true)
       let  {data} = await axios('https://route-ecommerce.onrender.com/api/v1/products')
@@ -42,6 +60,7 @@ export default function Featuredprod() {
     useEffect(()=>{
         getapi()
         getCard()
+        
     },[])
   return <>
     
@@ -51,11 +70,14 @@ export default function Featuredprod() {
     {apidata.map((categ )=> 
 
 
+
 <div key={categ._id}   className="col-md-3 linkss p-4"  >
 <div  >
+      
+  <div className='love'><i onClick={()=>wishlist(categ._id)}  className="fa-solid fa-heart fa-2x" style={{color: "#ff0000",}}></i></div>
 <Link className='link2'  to={`/Details/${categ._id}`}>
  <img   className='w-100' src={categ.imageCover} alt="" />
- <span className='text-success fw-bold'>{categ.category.name}</span>
+ <span className='text-success fw-bold'>{categ?.category?.name}</span>
  <h3 className='h6 fw-bolder'>{categ.title.split(' ').slice(0,2).join(' ')}</h3>
  <div className='d-flex justify-content-between '>
    <span className='text-muted'>{categ.price} EGP</span>

@@ -21,6 +21,7 @@ import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import EnterPassword from './components/EnterPassword/EnterPassword';
 import CurrentPassword from './components/CurrentPassword/CurrentPassword';
 import UpdateUserData from './components/UpdateUserData/UpdateUserData';
+import Wishlist from './components/Wishlist/Wishlist';
 
 
 
@@ -59,6 +60,7 @@ function saveUserData()
     {path:'Categories' ,element:  <ProtectedRoute><Categories/></ProtectedRoute> },
     {path:'About' ,element:<ProtectedRoute><About/></ProtectedRoute>},
     {path:'CheckOut' ,element:<ProtectedRoute><CheckOut/></ProtectedRoute>},
+    {path:'Wishlist' ,element:<ProtectedRoute><Wishlist/></ProtectedRoute>},
     {path:'CurrentPassword' ,element:<ProtectedRoute><CurrentPassword setuserData={setuserData}  /></ProtectedRoute>},
     {path:'UpdateUserData' ,element:<ProtectedRoute><UpdateUserData  setuserData={setuserData}  userData={userData} /></ProtectedRoute>},
     {path:'ForgotPassword' ,element:<ForgotPassword/>},

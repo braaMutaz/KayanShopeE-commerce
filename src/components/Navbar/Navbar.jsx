@@ -37,6 +37,11 @@ export default function Navbar({userData , Logout}) {
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="About">About</Link>
         </li>
+          
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to="/Wishlist"><i className="fa-solid fa-heart fs-4  me-2" style={{color: "#ff0000",}}></i></Link>
+        </li>
+
         <div className='d-flex align-items-center'>
           <Link className='link3' to={'/Cart'}>
           <i className="fa-solid text-success fa-cart-shopping">
