@@ -55,7 +55,7 @@ export default function Featuredprod() {
 <div  >
 <Link className='link2'  to={`/Details/${categ._id}`}>
  <img   className='w-100' src={categ.imageCover} alt="" />
- <span className='text-success fw-bold'>{categ.category.name}</span>
+ <span className='text-success fw-bold'>{categ?.category?.name}</span>
  <h3 className='h6 fw-bolder'>{categ.title.split(' ').slice(0,2).join(' ')}</h3>
  <div className='d-flex justify-content-between '>
    <span className='text-muted'>{categ.price} EGP</span>
